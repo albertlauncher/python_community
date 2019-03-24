@@ -31,7 +31,7 @@ if not hasclipmgr:
 ICON_PATH = os.path.dirname(__file__)+"/lastpass.svg"
 
 def handleQuery(query):
-    if not query.isTriggered:
+    if query.isTriggered:
       stripped = query.string.strip()
 
       try:
