@@ -19,6 +19,14 @@ __dependencies__ = ['lpass']
 
 if not which('lpass'):
     raise Exception("`lpass` is not in $PATH.")
+clipmgrs = ['xclip', 'xsel', 'putclip']
+hasclipmgr = False
+for mgr in clipmgrs:
+    if which(mgr):
+        hasclipmgr = True
+        break
+if not hasclipmgr:
+    raise Exception("`xclip`, `xsel`, `pbcopy`, or `putclip` is not in $PATH.")
 
 ICON_PATH = os.path.dirname(__file__)+"/lastpass.svg"
 
