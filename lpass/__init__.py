@@ -19,7 +19,7 @@ __dependencies__ = ['lpass']
 
 if not which('lpass'):
     raise Exception("`lpass` is not in $PATH.")
-clipmgrs = ['xclip', 'xsel', 'putclip']
+clipmgrs = ['xclip', 'xsel', 'pbcopy', 'putclip']
 hasclipmgr = False
 for mgr in clipmgrs:
     if which(mgr):
