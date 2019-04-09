@@ -28,7 +28,10 @@ PORT = 6600
 
 def handleQuery(query):
 
-    if len(query.string)>1:
+    if query.isTriggered and len(query.string)>=1:
+        # out: the outputted list of suggestions
+        out = []
+
         # set icons:
         song_icon=iconLookup("audio-x-generic") or os.path.join(os.path.dirname(__file__),"Papirus-Team-Papirus-Mimetypes-Audio-x-flac.svg")
         album_icon=iconLookup("music-album-default") or os.path.join(os.path.dirname(__file__),"folder-green-music.svg")
@@ -36,13 +39,19 @@ def handleQuery(query):
         
         mpclient = MPDClient()
         mpclient.timeout = 10
-        mpclient.connect(SERVER,PORT)
+        try:
+            mpclient.connect(SERVER,PORT)
+        except:
+            out.append(Item(
+                id="0",
+                text="Error: Could not connect to %s:%d." % (SERVER,PORT),
+                actions=[]
+            ))
+            return out
         artistmatches = mpclient.search("artist",query.string)
         albummatches = mpclient.search("album",query.string)
         titlematches = mpclient.search("title",query.string)
-	
-        # out: the outputted list of suggestions
-        out = []
+        
         if len(artistmatches)>0:
             artistalb = dict()
             for a in artistmatches:
