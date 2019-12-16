@@ -53,7 +53,7 @@ def handleQuery(query):
           try:
               lpass = subprocess.Popen(['lpass', 'ls', '--long'], stdout=subprocess.PIPE)
               try:
-                  output = subprocess.check_output(['grep', stripped], stdin=lpass.stdout)
+                  output = subprocess.check_output(['grep', '-i', stripped], stdin=lpass.stdout)
               except subprocess.CalledProcessError as e:
                   return Item(
                       id=__prettyname__,
