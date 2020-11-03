@@ -1,4 +1,8 @@
-# Community driven Python repository
+# Former community driven Python repository
+
+The community approach did not really work out. This repo will be closed. Please send PR to the main Pyhton repo.
+
+---
 
 This is where you (dev) can puplish your extensions and also where you (user) can find a bunch of nifty workflows.
 
